@@ -63,9 +63,9 @@ ENV PHP_LDFLAGS="-Wl,-O1 -pie"
 
 ENV GPG_KEYS 42670A7FE4D0441C8E4632349E4FDC074A4EF02D 5A52880781F755608BF815FC910DEB46F53EA312
 
-ENV PHP_VERSION 7.4.16
-ENV PHP_URL="https://www.php.net/distributions/php-7.4.16.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-7.4.16.tar.xz.asc"
-ENV PHP_SHA256="1c16cefaf88ded4c92eed6a8a41eb682bb2ef42429deb55f1c4ba159053fb98b"
+ENV PHP_VERSION 7.4.21
+ENV PHP_URL="https://www.php.net/distributions/php-7.4.21.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-7.4.21.tar.xz.asc"
+ENV PHP_SHA256="cf43384a7806241bc2ff22022619baa4abb9710f12ec1656d0173de992e32a90"
 
 RUN set -eux; \
 	\
@@ -87,7 +87,7 @@ RUN set -eux; \
 		curl -fsSL -o php.tar.xz.asc "$PHP_ASC_URL"; \
 		export GNUPGHOME="$(mktemp -d)"; \
 		for key in $GPG_KEYS; do \
-			gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+			gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
 		done; \
 		gpg --batch --verify php.tar.xz.asc php.tar.xz; \
 		gpgconf --kill all; \
